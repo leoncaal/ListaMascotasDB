@@ -2,9 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/cincoMas"
-        android:icon="@drawable/star"
-        android:title="Star"
-        app:showAsAction="ifRoom"></item>
+    <item android:id="@+id/contacto"
+        android:title="@string/contacto"
+        android:orderInCategory="100"
+        app:showAsAction="collapseActionView"></item>
+
+    <item android:id="@+id/acerca_de"
+        android:title="@string/acerca_de"
+        android:orderInCategory="101"
+        app:showAsAction="collapseActionView"></item>
 
 </menu>

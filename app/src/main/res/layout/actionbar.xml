@@ -22,12 +22,20 @@
                 android:layout_gravity="center"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="60dp"
+                android:gravity="center"
                 android:text="Petagram"
-                android:textSize="40dp"
+                android:textSize="32dp"
                 app:fontFamily="casual" />
+
+            <ImageView
+                android:id="@+id/cincoMas"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/star" />
 
             <androidx.appcompat.widget.ActionMenuView
                 android:layout_width="wrap_content"

@@ -5,4 +5,6 @@
     <dimen name="size_pic">350dp</dimen>
     <dimen name="size_hueso">40dp</dimen>
     <dimen name="padding_hueso">10dp</dimen>
+    <dimen name="txt_title">30sp</dimen>
+    <dimen name="mensaje">250dp</dimen>
 </resources>
