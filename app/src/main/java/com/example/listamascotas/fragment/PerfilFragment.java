@@ -1,6 +1,7 @@
 package com.example.listamascotas.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import com.example.listamascotas.R;
 import com.example.listamascotas.adapter.MascotaAdapter;
 import com.example.listamascotas.adapter.MascotaAdapterPics;
 import com.example.listamascotas.pojo.Mascota;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class PerfilFragment extends Fragment {
 
     private ArrayList<Mascota> picMascota;
     private RecyclerView listaPicsMascota;
+    private CircularImageView circularImageView;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -44,6 +47,20 @@ public class PerfilFragment extends Fragment {
 
         inicializarListaMascotas();
         inicializarAdaptador();
+
+        CircularImageView circularImageView = view.findViewById(R.id.circularImageView);
+// Set Circle color for transparent image
+        circularImageView.setCircleColor(Color.WHITE);
+// Set Border
+        circularImageView.setBorderColor(Color.GRAY);
+        circularImageView.setBorderWidth(10);
+// Add Shadow with default param
+        circularImageView.setShadowEnable(true);
+// or with custom param
+        circularImageView.setShadowRadius(15);
+        circularImageView.setShadowColor(Color.GRAY);
+
+        circularImageView.setShadowGravity(CircularImageView.ShadowGravity.CENTER);
 
         return view;
     }
