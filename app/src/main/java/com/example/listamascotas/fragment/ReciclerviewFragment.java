@@ -15,13 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.listamascotas.R;
 import com.example.listamascotas.adapter.MascotaAdapter;
 import com.example.listamascotas.pojo.Mascota;
+import com.example.listamascotas.presentador.RecyclerViewFragmentPresenter;
 
 import java.util.ArrayList;
 
-public class ReciclerviewFragment extends Fragment {
+public class ReciclerviewFragment extends Fragment implements IRecyclerViewFragmentView {
 
     public static ArrayList<Mascota> mascotas;
     private RecyclerView listaMascotas;
+    private RecyclerViewFragmentPresenter presenter;
 
     @Nullable
     @Override
@@ -31,33 +33,34 @@ public class ReciclerviewFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
         listaMascotas = (RecyclerView) view.findViewById(R.id.rvMascotas);
+        presenter = new RecyclerViewFragmentPresenter(this, getContext());
+
+
+        return view;
+    }
+
+
+    @Override
+    public void generarLayoutVertical() {
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(RecyclerView.VERTICAL);
 
         listaMascotas.setLayoutManager(llm);
-
-        inicializarListaMascotas();
-        inicializarAdaptador();
-
-        return view;
     }
 
-    public MascotaAdapter adaptador;
+    @Override
+    public MascotaAdapter crearAdaptador(ArrayList<Mascota> mascotas) {
 
-    public void inicializarAdaptador(){
-        adaptador = new MascotaAdapter(mascotas, getActivity());
-        listaMascotas.setAdapter(adaptador);
+        MascotaAdapter mascotaAdapter = new MascotaAdapter(mascotas, getActivity());
+
+        return mascotaAdapter;
     }
 
-    public void inicializarListaMascotas(){
+    @Override
+    public void inicializarAdaptadorRV(MascotaAdapter mascotaAdapter) {
 
-        mascotas = new ArrayList<Mascota>();
+        listaMascotas.setAdapter(mascotaAdapter);
 
-        mascotas.add(new Mascota(R.drawable.chihuahua, "Rintintin", 3, "Chihuahua",0));
-        mascotas.add(new Mascota(R.drawable.dalmata, "Scooby", 1, "Dalmata",0));
-        mascotas.add(new Mascota(R.drawable.poodle, "Rocky", 5, "Poodle",0));
-        mascotas.add(new Mascota(R.drawable.pug, "Peluso", 8, "Pug",0));
-        mascotas.add(new Mascota(R.drawable.rottweiler, "Snup", 2, "Rottweiler",0));
     }
 }

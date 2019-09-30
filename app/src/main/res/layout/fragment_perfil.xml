@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingHorizontal="60dp"
-            android:text="Rintintin"
+            android:text="Rocky"
             android:textSize="32dp"
             app:fontFamily="casual" />
 

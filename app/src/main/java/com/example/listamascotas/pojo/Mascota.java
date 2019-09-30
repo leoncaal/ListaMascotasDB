@@ -1,23 +1,28 @@
 package com.example.listamascotas.pojo;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-public class Mascota implements Parcelable {
+public class Mascota {
 
+    private int id;
+    private int foto;
     private String nombre;
     private int edad;
     private String raza;
     private int rating;
-    private int foto;
+    private int posicion;
 
+    public Mascota(){
 
-    public Mascota(int foto, String nombre, int edad, String raza, int rating) {
+    }
+
+    public Mascota(int id, int foto, String nombre, int edad, String raza, int rating, int posicion) {
+        this.id = id;
         this.foto = foto;
         this.nombre = nombre;
         this.edad = edad;
         this.raza = raza;
         this.rating = rating;
+        this.posicion = posicion;
 
     }
 
@@ -27,25 +32,13 @@ public class Mascota implements Parcelable {
 
     }
 
-    protected Mascota(Parcel in) {
-        nombre = in.readString();
-        edad = in.readInt();
-        raza = in.readString();
-        rating = in.readInt();
-        foto = in.readInt();
+    public int getId() {
+        return id;
     }
 
-    public static final Creator<Mascota> CREATOR = new Creator<Mascota>() {
-        @Override
-        public Mascota createFromParcel(Parcel in) {
-            return new Mascota(in);
-        }
-
-        @Override
-        public Mascota[] newArray(int size) {
-            return new Mascota[size];
-        }
-    };
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getFoto() {
         return foto;
@@ -87,17 +80,11 @@ public class Mascota implements Parcelable {
         this.rating = rating;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public int getPosicion() {
+        return posicion;
     }
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(nombre);
-        parcel.writeInt(edad);
-        parcel.writeString(raza);
-        parcel.writeInt(rating);
-        parcel.writeInt(foto);
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 }

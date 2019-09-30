@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                calcula();
+                Intent intent = new Intent(getBaseContext(), CincoMascotas.class);
+                startActivity(intent);
 
             }
 
@@ -59,26 +60,6 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
-    }
-
-    public void calcula(){
-
-        cincoMascotas = new ArrayList<Mascota>();
-
-        int iterador;
-
-        for (iterador = 0; ReciclerviewFragment.mascotas.size() > iterador; iterador ++){
-
-            if (ReciclerviewFragment.mascotas.get(iterador).getRating() >= 1) {
-
-                cincoMascotas.add(new Mascota(ReciclerviewFragment.mascotas.get(iterador).getFoto(), ReciclerviewFragment.mascotas.get(iterador).getNombre(), ReciclerviewFragment.mascotas.get(iterador).getEdad(), ReciclerviewFragment.mascotas.get(iterador).getRaza(), ReciclerviewFragment.mascotas.get(iterador).getRating()));
-                Toast.makeText(getBaseContext(), "Tiene " + ReciclerviewFragment.mascotas.get(iterador).getRating() + " likes " + ReciclerviewFragment.mascotas.get(iterador).getNombre(), Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        Intent i = new Intent(getBaseContext(), CincoMascotas.class);
-        i.putParcelableArrayListExtra("CincoMascotas", cincoMascotas);
-        startActivity(i);
     }
 
     @Override

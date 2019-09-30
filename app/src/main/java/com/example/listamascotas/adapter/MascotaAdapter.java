@@ -10,17 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.listamascotas.db.ConstructorMascotas;
 import com.example.listamascotas.pojo.Mascota;
 import com.example.listamascotas.R;
 
 import java.util.ArrayList;
 
-public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder>{
+public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaViewHolder> {
 
     ArrayList<Mascota> mascotas;
     Activity activity;
 
-    public MascotaAdapter(ArrayList<Mascota> mascotas, Activity activity){
+    public MascotaAdapter(ArrayList<Mascota> mascotas, Activity activity) {
         this.mascotas = mascotas;
         this.activity = activity;
     }
@@ -43,12 +44,24 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
             @Override
             public void onClick(View view) {
 
-                int x = mascota.getRating();
+                ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
+                constructorMascotas.darLikeMascota(mascota);
 
-                x = x + 1;
+                holder.rankingMascota.setText(String.valueOf(constructorMascotas.obtenerLikesMascota(mascota)));
 
-                holder.rankingMascota.setText(String.valueOf(x));
-                mascota.setRating(x);
+                if (constructorMascotas.obtenerUltimaPosicion(mascota) > 0) {
+
+                    if (constructorMascotas.obtenerIdUltimaPosicion(mascota) != mascota.getId()) {
+                        constructorMascotas.ponerPosicion(mascota);
+                    }
+
+                }else {
+
+                    constructorMascotas.ponerPosicion(mascota);
+
+                }
+
+
             }
         });
 
@@ -59,7 +72,7 @@ public class MascotaAdapter extends RecyclerView.Adapter<MascotaAdapter.MascotaV
         return mascotas.size();
     }
 
-    public static class MascotaViewHolder extends RecyclerView.ViewHolder{
+    public static class MascotaViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView fotoMascota;
         private TextView nombreMascota;
